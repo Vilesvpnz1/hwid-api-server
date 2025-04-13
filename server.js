@@ -42,6 +42,21 @@ function validateKeyAndHWID(req, res, next) {
   next();
 }
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    message: 'HWID API Service',
+    endpoints: {
+      createKey: 'POST /api/keys',
+      getKey: 'GET /api/keys/:key',
+      updateKey: 'PATCH /api/keys/:key',
+      deleteKey: 'DELETE /api/keys/:key',
+      validate: 'POST /api/keys/validate'
+    },
+    note: 'All endpoints except / require X-API-Key and X-HWID headers'
+  });
+});
+
 // API Endpoints
 
 // Create new key with HWID
